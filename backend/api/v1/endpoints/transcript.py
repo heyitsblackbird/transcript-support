@@ -1,7 +1,6 @@
 from fastapi import APIRouter
-from backend.schemas.transcript import  TranscriptResponse
-from backend.services.ai_service import AIService
-
+from schemas.transcript import TranscriptResponse
+from services.ai_service import AIService
 
 router = APIRouter()
 ai_service = AIService()
