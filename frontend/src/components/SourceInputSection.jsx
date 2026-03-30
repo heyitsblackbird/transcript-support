@@ -1,10 +1,12 @@
 
 import React, {useState} from "react";
 import {Tabs, TabsList, TabsTrigger} from "@/components/ui/tabs"
-import { Field, FieldLabel } from "./ui/field";
-import { Input } from "./ui/input";
-import { Button } from "./ui/button";
-function SourceInputSection() {
+import { Field, FieldLabel } from "@/components/ui/field";
+import {Input} from "@/components/ui/input";
+import { Button } from "@/components/ui/button";
+import generateTranscriptSummary from "@/lib/api";
+
+function SourceInputSection({setSummary}) {
     const [ activeTab, setActiveTab ] = useState("youTubeURL");
     const [ transcriptText, setTranscriptText ] = useState("");
 
@@ -16,8 +18,21 @@ function SourceInputSection() {
         setTranscriptText(event.target.value);
     }
 
-    console.log("Active Tab:", activeTab);
-    console.log("Transcript Text:", transcriptText);
+    const handleGenerate = async () => {
+        // Implement the logic to generate the summary based on the active tab and input data
+        console.log("Generating summary for:", activeTab);
+        console.log("Transcript Text:", transcriptText);
+
+        // Call API to generate summary
+        try{
+            const summary = await generateTranscriptSummary(transcriptText);
+            console.log("Generated Summary:", summary);
+            setSummary(summary.summary);
+        }
+        catch(error){
+            console.error("Error generating summary:", error);
+        }
+    }
 
     return (
         <div className="m-5 p-5 bg-white rounded-lg shadow-md content-center w-full md:w-2/5">
@@ -54,7 +69,7 @@ function SourceInputSection() {
                 </div>
             )}
         <div className="flex flex-wrap items-center md:flex-row">
-                    <Button className="mt-5 " variant="outline">Generate</Button>
+                <Button className="mt-5 " variant="outline" onClick={handleGenerate}>Generate</Button>
         </div>
 
         </div>
