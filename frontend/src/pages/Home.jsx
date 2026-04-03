@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 
 const Home = () => {
   const [summary, setSummary] = useState("");
+  const [flashcards, setFlashcards] = useState([]);
   return (
     <div className='min-h-screen bg-slate-100'>
       <div>
@@ -11,8 +12,8 @@ const Home = () => {
         <p className=' mt-1 ml-5 text-lg'>Summarize your transcript/videos with ease</p>
       </div>
       <div className='flex items-baseline'>
-        <SourceInputSection setSummary={setSummary} />
-        <Summary summary={summary} />
+        <SourceInputSection setSummary={setSummary} setFlashcards={setFlashcards} />
+        <Summary summary={summary} flashcards={flashcards} />
       </div>
     </div>
   );

@@ -1,6 +1,7 @@
 import React,{useState} from "react";
+import Flashcards from "./Flashcards";
 
-const Summary = ({summary}) =>{
+const Summary = ({summary, flashcards}) =>{
     return(
         <div className="m-5 p-5  bg-white rounded-lg shadow-md content-center w-full md:w-3/5 align-bottom">
             <h2 className=" font-bold text-xl">Summary</h2>
@@ -11,8 +12,14 @@ const Summary = ({summary}) =>{
                 </div>
             </div>
             <div className="flex-1 border-t-3 mx-2"></div>
-            
-            
+            <div className="m-2">
+                <h2 className="font-bold text-xl">Flashcards</h2>
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                    {flashcards?.map((flashcard, idx) => (
+                        <Flashcards flashcard={flashcard} idx={idx} />
+                    ))}
+                </div>
+            </div>
         </div>
     )
 }
