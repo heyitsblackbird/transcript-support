@@ -6,7 +6,7 @@ import {Input} from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import generateTranscriptSummary from "@/lib/api";
 
-function SourceInputSection({setSummary}) {
+function SourceInputSection({setSummary, setFlashcards}) {
     const [ activeTab, setActiveTab ] = useState("youTubeURL");
     const [ transcriptText, setTranscriptText ] = useState("");
 
@@ -28,6 +28,7 @@ function SourceInputSection({setSummary}) {
             const summary = await generateTranscriptSummary(transcriptText);
             console.log("Generated Summary:", summary);
             setSummary(summary.summary);
+            setFlashcards(summary.flashcards);
         }
         catch(error){
             console.error("Error generating summary:", error);
