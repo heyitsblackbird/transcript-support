@@ -121,7 +121,5 @@ Response shape:
 
 ## Future Improvements
 
-- Add direct YouTube transcript extraction.
 - Support file uploads end to end.
-- Add loading and error states in the UI.
 - Add export funtionality to save generated flashcards.
