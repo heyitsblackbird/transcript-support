@@ -4,7 +4,7 @@ import {Tabs, TabsList, TabsTrigger} from "@/components/ui/tabs"
 import { Field, FieldLabel } from "@/components/ui/field";
 import {Input} from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import generateTranscriptSummary from "@/lib/api";
+import {generateTranscriptSummary, generateTranscriptSummaryForYouTube} from "@/lib/api";
 
 function SourceInputSection({setSummary, setFlashcards}) {
     const [ activeTab, setActiveTab ] = useState("youTubeURL");
@@ -25,10 +25,18 @@ function SourceInputSection({setSummary, setFlashcards}) {
 
         // Call API to generate summary
         try{
-            const summary = await generateTranscriptSummary(transcriptText);
-            console.log("Generated Summary:", summary);
-            setSummary(summary.summary);
-            setFlashcards(summary.flashcards);
+            let summary = null;
+            if(activeTab === "youTubeURL"&& transcriptText.trim() !== ""){
+                summary = await generateTranscriptSummaryForYouTube(transcriptText);
+            }
+            else if(activeTab === "pasteText" && transcriptText.trim() !== ""){
+                summary = await generateTranscriptSummary(transcriptText);
+            }
+            if(summary){
+                console.log("Generated Summary:", summary);
+                setSummary(summary.summary);
+                setFlashcards(summary.flashcards);
+            }
         }
         catch(error){
             console.error("Error generating summary:", error);
@@ -49,7 +57,7 @@ function SourceInputSection({setSummary, setFlashcards}) {
                 <div className="mt-5">
                     <Field>
                         <FieldLabel htmlFor="youTubeURL">YouTube URL</FieldLabel>
-                        <Input id="youTubeURL" type="text" placeholder="Enter YouTube URL here" />
+                        <Input id="youTubeURL" type="text" placeholder="Enter YouTube URL here" value={transcriptText} onChange={handleTranscriptTextChange} />
                     </Field>
                 </div>
             )}
