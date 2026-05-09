@@ -26,7 +26,7 @@ def chunk__document(text: str, source_name: str, chunk_size: int = 800, chunk_ov
 
     return [{
         "chunk_id": f"{source_name}_chunk_{idx}",
-        "source_name": source_name,
+        "source": source_name,
         "index": idx,
         "text": chunk,
     } for idx, chunk in enumerate(chunks)]
