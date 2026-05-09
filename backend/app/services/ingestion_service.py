@@ -95,5 +95,5 @@ def ingest_document(file_path: str) -> dict:
     return {
         'source': path.name,
         "file-type": path.suffix.lower(),
-        'metadata': cleaned_metadata
+        'text': cleaned_metadata
     }
