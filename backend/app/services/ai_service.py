@@ -2,8 +2,8 @@
 #from langchain_openai import ChatOpenAI
 from langchain_google_genai import ChatGoogleGenerativeAI
 from langchain_core.prompts import ChatPromptTemplate
-from backend.app.schemas.transcript import TranscriptResponse
-from backend.app.core.config import OPENAI_API_KEY, GEMINI_API_KEY
+from app.schemas.transcript import TranscriptResponse
+from app.core.config import  GEMINI_API_KEY
 from pydantic import SecretStr
 from youtube_transcript_api import YouTubeTranscriptApi
 

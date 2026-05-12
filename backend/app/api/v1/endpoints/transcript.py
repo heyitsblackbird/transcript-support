@@ -1,8 +1,8 @@
 from fastapi import APIRouter
-from backend.app.schemas.transcript import TranscriptResponse
-from backend.app.services.ai_service import AIService
+from app.schemas.transcript import TranscriptResponse
+from app.services.ai_service import AIService
 
-router = APIRouter()
+router = APIRouter(prefix="/transcript", tags=["transcript"])
 ai_service = AIService()
 
 @router.post("/process-transcript", response_model=TranscriptResponse)

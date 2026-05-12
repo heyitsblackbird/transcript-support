@@ -28,6 +28,19 @@ def build_context(chunks: list[dict]) -> str:
 
     return "\n\n".join(context_parts)
 
+def extract_response_content(response) -> str:
+    if isinstance(response, str):
+        return response
+    
+    if isinstance(response, list):
+        text_parts = []
+
+        for item in response:
+            if isinstance(item, dict) and "text" in item:
+                text_parts.append(item["text"])
+        return " ".join(text_parts).strip()
+    
+    return str(response).strip()
 
 async def generate_answer(question: str, chunks: list[dict]) -> dict:
     if not chunks:
@@ -82,6 +95,6 @@ Question:
     ]
 
     return {
-        "answer": response.content,
+        "answer": extract_response_content(response.content),
         "citations": citations,
     }
