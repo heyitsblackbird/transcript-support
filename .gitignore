@@ -33,4 +33,5 @@ __pycache__/
 *.sw?
 
 # Vector DB
-backend/data/chromaDB/
+backend/data/*
+!backend/data/.gitkeep

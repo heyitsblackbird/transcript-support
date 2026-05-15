@@ -11,8 +11,11 @@ dependencies = [
     "langchain-google-genai>=4.2.1",
     "langchain-openai>=1.1.11",
     "langchain-text-splitters>=1.1.2",
+    "pydantic>=2.12.5",
     "pypdf>=6.11.0",
+    "rich>=14.3.3",
     "sentence-transformers>=5.4.1",
     "tiktoken>=0.12.0",
+    "typer>=0.24.1",
     "youtube-transcript-api>=1.2.4",
 ]
